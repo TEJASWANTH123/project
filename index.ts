@@ -3,13 +3,22 @@ import cors from 'cors';
 import { authRoutes, todoRoutes } from './routes/index';
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
+import session from 'express-session';
+
 // import multer, { Multer } from 'multer'; // Comment out or remove this line
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-
+app.use(
+    session({
+      secret: 'your-secret-key', // Replace with a secure secret key
+      resave: false,
+      saveUninitialized: false,
+    })
+  );
 app.use('/api', todoRoutes);
 app.use('/auth', authRoutes);
 
