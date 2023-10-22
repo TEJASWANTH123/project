@@ -28,7 +28,7 @@ app.use('/auth', authRoutes);
 // Set up the Swagger UI route using the updated Swagger JSON file
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-const storage: multer.StorageEngine = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: (req: Request, file: Express.Multer.File, cb: (error: Error | null, destination: string) => void) => {
     cb(null, 'uploads/'); // The 'uploads' folder is the destination for file uploads
   },
@@ -37,10 +37,8 @@ const storage: multer.StorageEngine = multer.diskStorage({
     cb(null, uniqueSuffix + '-' + file.originalname);
   },
 });
-
-
-
 const upload = multer({ storage: storage });
+
 
 app.post('/upload', upload.single('file'), (req: Request, res: Response) => {
   // res.json({ message: 'File uploaded successfully' });
