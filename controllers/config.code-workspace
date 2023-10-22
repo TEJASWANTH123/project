@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "config",
+			"path": "../../todoapp/config"
+		},
+		{
+			"name": "project",
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
